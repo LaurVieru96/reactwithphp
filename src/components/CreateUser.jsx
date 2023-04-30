@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const CreateUser = () => {
   const [inputs, setInputs] = useState({});
@@ -11,6 +12,9 @@ const CreateUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    axios.post("http://localhost:80/api/user/save", inputs);
+
     console.log(inputs);
   };
   return (
