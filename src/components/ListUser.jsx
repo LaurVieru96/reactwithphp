@@ -16,6 +16,15 @@ const ListUser = () => {
     });
   };
 
+  const deleteUser = (id) => {
+    axios
+      .delete(`http://localhost:80/api/user/${id}/delete`)
+      .then(function (response) {
+        console.log(response.data);
+        getUsers();
+      });
+  };
+
   return (
     <>
       <h1>List Users</h1>
@@ -37,8 +46,13 @@ const ListUser = () => {
               <td>{user.email}</td>
               <td>{user.mobile}</td>
               <td>
-                <Link to={`user/${user.id}/edit`}>Edit</Link>
-                <button>Delete</button>
+                <Link
+                  to={`user/${user.id}/edit`}
+                  style={{ marginRight: "10px" }}
+                >
+                  Edit
+                </Link>
+                <button onClick={() => deleteUser(user.id)}>Delete</button>
               </td>
             </tr>
           ))}
